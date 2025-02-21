@@ -1,10 +1,14 @@
 pipeline {
     agent any
+    triggers {
+        githubPush()
+    }
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/Maxafangsco/devops-lab.git'
+                    url: 'https://github.com/Maxafangsco/devops-lab.git',
+                    poll: false
             }
         }
         stage('Build Info') {
